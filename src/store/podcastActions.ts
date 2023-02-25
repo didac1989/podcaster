@@ -102,20 +102,11 @@ export const fetchPodcastDetail = (podcastId: string) => {
               ...newPodcastDetail,
               expiration: getExpireTime(oneDayTimeInMiliseconds),
             };
-            const storedItemsData = localStorage.getItem('podcastsItemsData');
+            localStorage.setItem(
+              `podcastsItemsData${newPodcastItemData.id}`,
+              JSON.stringify(newPodcastItemData)
+            );
 
-            if (!storedItemsData) {
-              localStorage.setItem(
-                'podcastsItemsData',
-                JSON.stringify([newPodcastItemData])
-              );
-            } else {
-              const storedItems = JSON.parse(storedItemsData);
-              localStorage.setItem(
-                'podcastsItemsData',
-                JSON.stringify([...storedItems, newPodcastItemData])
-              );
-            }
             dispatch(podcastActions.addPodcastDetail(newPodcastDetail));
           }
         }
@@ -128,15 +119,13 @@ export const fetchPodcastDetail = (podcastId: string) => {
 
     dispatch(uiActions.loadingStart());
 
-    const preloadedDetailsData = localStorage.getItem('podcastsItemsData');
+    const preloadedDetailsData = localStorage.getItem(
+      `podcastsItemsData${podcastId}`
+    );
 
     if (preloadedDetailsData) {
-      const preloadedDetails: PodcastItemData[] =
+      const preloadedDetailsItem: PodcastItemData =
         JSON.parse(preloadedDetailsData);
-
-      const preloadedDetailsItem = preloadedDetails.find(
-        (detail) => detail.id === podcastId
-      );
 
       if (preloadedDetailsItem) {
         const hasExpired =

@@ -11,6 +11,7 @@ import { podcastActions } from '../../store/podcastSlice';
 import styles from './PodcastEpisode.module.scss';
 
 // TODO: Not found episode
+// TODO: Responsive
 
 const PodcastEpisode = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,12 @@ const PodcastEpisode = () => {
   const { podcasts, podcastDetail, podcastEpisode } = useAppSelector(
     (state) => state.podcast
   );
+
+  // Clean up
+  useEffect(() => {
+    dispatch(podcastActions.addPodcastDetail(null));
+    dispatch(podcastActions.addPodcastEpisode(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (podcasts.length > 0) {

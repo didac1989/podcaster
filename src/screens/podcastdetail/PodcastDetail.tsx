@@ -8,10 +8,12 @@ import PodcastSummary from '../../components/podcastsummary/PodcastSummary';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { fetchPodcastDetail, fetchPodcasts } from '../../store/podcastActions';
+import { podcastActions } from '../../store/podcastSlice';
 import { PodcastEpisode } from '../../podcast.types';
 import styles from './PodcastDetail.module.scss';
 
 // TODO: Not found detail
+// TODO: Responsive
 
 const PodcastDetail = () => {
   const history = useHistory();
@@ -20,6 +22,11 @@ const PodcastDetail = () => {
     podcastId: string;
   }>();
   const { podcasts, podcastDetail } = useAppSelector((state) => state.podcast);
+
+  // Clean up
+  useEffect(() => {
+    dispatch(podcastActions.addPodcastDetail(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (podcasts.length > 0) {
