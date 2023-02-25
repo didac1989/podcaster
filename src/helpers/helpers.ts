@@ -9,3 +9,12 @@ export const getExpireTime = (expirationInMilisecons: number) => {
   const nowTime = new Date().getTime();
   return nowTime + expirationInMilisecons;
 };
+
+export const getFormattedDate = (date: number) =>
+  new Date(date).toLocaleDateString('es-ES');
+
+export const getFormattedDuration = (time: number) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time - minutes * 60;
+  return `${minutes}:${seconds > 9 ? seconds : `0${seconds}`}`;
+};

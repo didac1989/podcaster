@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Podcasts from './screens/Podcasts';
-import PodcastDetail from './screens/PodcastDetail';
+import PodcastDetail from './screens/podcastdetail/PodcastDetail';
 import PodcastEpisode from './screens/PodcastEpisode';
 import Layout from './layouts/Layout';
 

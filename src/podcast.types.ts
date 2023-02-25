@@ -3,14 +3,6 @@ export type PodcastsData = {
   expiration: number;
 };
 
-export interface PodcastEntryI {
-  id: string;
-  name: string;
-  title: string;
-  artist: string;
-  image: { height: string; label: string }[];
-}
-
 export type PodcastsEntryReq = {
   id: { attributes: { 'im:id': string } };
   'im:image': { attributes: { height: string }; label: string }[];
@@ -18,6 +10,19 @@ export type PodcastsEntryReq = {
   'im:name': { label: string };
   title: { label: string };
 };
+
+export type PodcastDetailReq = {
+  resultCount: number;
+  results: { feedUrl: string }[];
+};
+
+export interface PodcastEntryI {
+  id: string;
+  name: string;
+  title: string;
+  artist: string;
+  image: { height: string; label: string }[];
+}
 
 export interface PodcastDetail extends PodcastEntryI {
   description: string;

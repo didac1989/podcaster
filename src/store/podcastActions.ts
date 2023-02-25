@@ -13,11 +13,11 @@ import {
 import { simplifyRequestPodcastsEntry } from '../helpers/podcast';
 import {
   PodcastDetail,
+  PodcastDetailReq,
   PodcastEpisode,
   PodcastItemData,
   PodcastsData,
 } from '../podcast.types';
-import { PodcastDetailReq } from '../screens/PodcastDetail.types';
 
 export const fetchPodcasts = () => {
   return async (dispatch: AppDispatch) => {
@@ -71,8 +71,8 @@ export const fetchPodcastDetail = (podcastId: string) => {
           `${process.env.REACT_APP_CORS_ANYWHERE_URL}/${process.env.REACT_APP_ITUNES_URL}/lookup?id=${podcastId}`
         );
 
-        const podcastDetailReq: PodcastDetailReq = JSON.parse(data.contents);
-
+        const podcastDetailReq: PodcastDetailReq = data;
+        debugger;
         if (podcastDetailReq.resultCount > 0) {
           const { feedUrl } = podcastDetailReq.results[0];
 
@@ -82,7 +82,6 @@ export const fetchPodcastDetail = (podcastId: string) => {
           );
 
           if (selectedPodcast) {
-            debugger;
             const rssData = await parse(
               `${process.env.REACT_APP_CORS_ANYWHERE_URL}/${feedUrl}`
             );
@@ -128,6 +127,28 @@ export const fetchPodcastDetail = (podcastId: string) => {
     };
 
     dispatch(uiActions.loadingStart());
+
+    const preloadedDetailsData = localStorage.getItem('podcastsItemsData');
+
+    if (preloadedDetailsData) {
+      const preloadedDetails: PodcastItemData[] =
+        JSON.parse(preloadedDetailsData);
+
+      const preloadedDetailsItem = preloadedDetails.find(
+        (detail) => detail.id === podcastId
+      );
+
+      if (preloadedDetailsItem) {
+        const hasExpired =
+          new Date().getTime() > preloadedDetailsItem?.expiration;
+        if (!hasExpired) {
+          dispatch(podcastActions.addPodcastDetail(preloadedDetailsItem));
+          dispatch(uiActions.loadingEnd());
+          return;
+        }
+      }
+    }
+
     fetchData();
   };
 };
