@@ -7,7 +7,7 @@ import {
 
 import Podcasts from './screens/Podcasts';
 import PodcastDetail from './screens/podcastdetail/PodcastDetail';
-import PodcastEpisode from './screens/PodcastEpisode';
+import PodcastEpisode from './screens/podcastepisode/PodcastEpisode';
 import Layout from './layouts/Layout';
 
 const App = () => {

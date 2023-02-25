@@ -19,6 +19,6 @@ it('renders correctly', async () => {
   const linkCellElement = screen.getByRole('cell', {
     name: DUMMY_EPISODES[0].title,
   });
-  await userEvent.click(linkCellElement);
+  userEvent.click(linkCellElement);
   expect(onClickHandler).toHaveBeenCalledTimes(1);
 });

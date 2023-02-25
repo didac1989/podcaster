@@ -11,6 +11,8 @@ import { fetchPodcastDetail, fetchPodcasts } from '../../store/podcastActions';
 import { PodcastEpisode } from '../../podcast.types';
 import styles from './PodcastDetail.module.scss';
 
+// TODO: Not found detail
+
 const PodcastDetail = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();

@@ -1,0 +1,9 @@
+.podcastEpisode {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 6rem;
+  .podcastEpisodeContainer {
+    align-self: flex-start;
+  }
+}

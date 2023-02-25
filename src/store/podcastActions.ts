@@ -72,7 +72,7 @@ export const fetchPodcastDetail = (podcastId: string) => {
         );
 
         const podcastDetailReq: PodcastDetailReq = data;
-        debugger;
+
         if (podcastDetailReq.resultCount > 0) {
           const { feedUrl } = podcastDetailReq.results[0];
 
