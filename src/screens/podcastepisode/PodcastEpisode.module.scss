@@ -1,14 +1,14 @@
-.podcastDetail {
+.podcastEpisode {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  .podcastDetailContainer {
+  .podcastEpisodeContainer {
     align-self: flex-start;
   }
 }
 
 @media (min-width: 1200px) {
-  .podcastDetail {
+  .podcastEpisode {
     display: grid;
     grid-template-columns: 1fr 3fr;
     column-gap: 6rem;

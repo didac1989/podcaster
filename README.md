@@ -2,7 +2,7 @@
 
 ## Permitions
 
-This app requires https://cors-anywhere.herokuapp.com/ permitions before use in development.
+This app requires https://cors-anywhere.herokuapp.com/ permitions before use.
 
 ## Libraries
 
