@@ -32,7 +32,7 @@ it('renders correctly', () => {
   expect(artistElement).toHaveTextContent(podcast.artist);
 });
 
-it('clickeable and reidirects correctly', async () => {
+it('is clickeable and reidirects correctly', async () => {
   const { podcast } = renderComponent();
 
   const clickableDivElement = await screen.findByTitle(podcast.title);

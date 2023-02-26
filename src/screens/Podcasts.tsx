@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../hooks/useStore';
 import { fetchPodcasts } from '../store/podcastActions';
 import { PodcastEntryI } from '../podcast.types';
 
+// TODO: Pagination or scroll loading
+
 const Podcasts = () => {
   const dispatch = useAppDispatch();
 

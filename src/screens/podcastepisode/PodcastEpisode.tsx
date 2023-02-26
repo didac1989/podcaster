@@ -10,9 +10,6 @@ import { fetchPodcastDetail, fetchPodcasts } from '../../store/podcastActions';
 import { podcastActions } from '../../store/podcastSlice';
 import styles from './PodcastEpisode.module.scss';
 
-// TODO: Not found episode
-// TODO: Responsive
-
 const PodcastEpisode = () => {
   const dispatch = useAppDispatch();
   const { podcastId, episodeId } = useParams<{
@@ -22,8 +19,8 @@ const PodcastEpisode = () => {
   const { podcasts, podcastDetail, podcastEpisode } = useAppSelector(
     (state) => state.podcast
   );
+  const { loading } = useAppSelector((state) => state.ui);
 
-  // Clean up
   useEffect(() => {
     dispatch(podcastActions.addPodcastDetail(null));
     dispatch(podcastActions.addPodcastEpisode(null));
@@ -46,7 +43,9 @@ const PodcastEpisode = () => {
     }
   }, [podcasts, podcastDetail, podcastId, episodeId, dispatch]);
 
-  if (!podcastDetail || !podcastEpisode) return null;
+  if (loading) return <div>Loading...</div>;
+
+  if (!podcastDetail || !podcastEpisode) return <div>Episode not found!</div>;
 
   return (
     <div className={styles.podcastEpisode}>

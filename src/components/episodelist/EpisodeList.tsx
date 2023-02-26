@@ -2,7 +2,6 @@ import { getFormattedDate, getFormattedDuration } from '../../helpers/helpers';
 import { PodcastEpisode } from '../../podcast.types';
 import styles from './EpisodeList.module.scss';
 
-// TODO: Responsive
 // TODO: Pagination or scroll loading
 
 const EpisodeList = ({

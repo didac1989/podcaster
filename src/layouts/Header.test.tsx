@@ -26,5 +26,5 @@ it('does not display a loading element when app is loading', () => {
   });
 
   const loadingElement = screen.queryByTitle(/loading/i);
-  expect(loadingElement).toBeNull();
+  expect(loadingElement).not.toBeInTheDocument();
 });

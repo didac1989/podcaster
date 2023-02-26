@@ -1,9 +1,16 @@
-.podcastEpisode {
+.podcastDetail {
+  display: flex;
+  flex-direction: column;
   margin: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  column-gap: 6rem;
-  .podcastEpisodeContainer {
+  .podcastDetailContainer {
     align-self: flex-start;
+  }
+}
+
+@media (min-width: 1200px) {
+  .podcastDetail {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 6rem;
   }
 }

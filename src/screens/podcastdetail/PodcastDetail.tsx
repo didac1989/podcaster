@@ -12,9 +12,6 @@ import { podcastActions } from '../../store/podcastSlice';
 import { PodcastEpisode } from '../../podcast.types';
 import styles from './PodcastDetail.module.scss';
 
-// TODO: Not found detail
-// TODO: Responsive
-
 const PodcastDetail = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
@@ -22,8 +19,8 @@ const PodcastDetail = () => {
     podcastId: string;
   }>();
   const { podcasts, podcastDetail } = useAppSelector((state) => state.podcast);
+  const { loading } = useAppSelector((state) => state.ui);
 
-  // Clean up
   useEffect(() => {
     dispatch(podcastActions.addPodcastDetail(null));
   }, [dispatch]);
@@ -40,7 +37,9 @@ const PodcastDetail = () => {
     history.push(`/podcast/${podcastId}/episode/${episode.id}`);
   };
 
-  if (!podcastDetail) return null;
+  if (loading) return <div>Loading...</div>;
+
+  if (!podcastDetail) return <div>Podcas detail not found</div>;
 
   return (
     <div className={styles.podcastDetail}>
